@@ -2,7 +2,8 @@ export function gitlogToChangelog(gitlog) {
     console.log(`\n\n ==================================================\n\n`);
 
     if (!gitlog) {
-        return null;
+        console.log('no Pull Request Merge Logs');
+        return;
     }
 
     const list = gitlogToList(gitlog);
