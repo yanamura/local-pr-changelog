@@ -1,4 +1,4 @@
-export function gitlogToChangelog(gitlog) {
+export function gitlogToChangelog(gitlog, withCheckbox) {
     console.log(`\n\n ==================================================\n\n`);
 
     if (!gitlog) {
@@ -10,7 +10,7 @@ export function gitlogToChangelog(gitlog) {
 
     const types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
     types.forEach(type => {
-        const outputList = findByType(list, type).map((item) => {return logInfoToMarkdown(item)});
+        const outputList = findByType(list, type).map((item) => {return logInfoToMarkdown(item, withCheckbox)});
         if (outputList.length) {
             console.log(`## ${type}`);
             outputList.forEach((item) => {
@@ -19,7 +19,7 @@ export function gitlogToChangelog(gitlog) {
         }
     });
 
-    const noTypeList = findNoType(list, types).map((item) => {return logInfoToMarkdown(item)});
+    const noTypeList = findNoType(list, types).map((item) => {return logInfoToMarkdown(item, withCheckbox)});
     if (noTypeList.length) {
         console.log(`## Others`);
         noTypeList.forEach((item) => {
@@ -57,6 +57,10 @@ export function findNoType(list, types) {
     });
 }
 
-export function logInfoToMarkdown(logInfo) {
-    return `- [${logInfo['prTitle']}](${logInfo['prNum']})`
+export function logInfoToMarkdown(logInfo, withCheckbox) {
+    if (withCheckbox) {
+        return `- [ ] [${logInfo['prTitle']}](${logInfo['prNum']})`;
+    } else {
+        return `- [${logInfo['prTitle']}](${logInfo['prNum']})`;
+    }
 }

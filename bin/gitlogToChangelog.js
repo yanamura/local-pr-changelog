@@ -9,7 +9,7 @@ exports.gitsubjectToPRnumber = gitsubjectToPRnumber;
 exports.findByType = findByType;
 exports.findNoType = findNoType;
 exports.logInfoToMarkdown = logInfoToMarkdown;
-function gitlogToChangelog(gitlog) {
+function gitlogToChangelog(gitlog, withCheckbox) {
     console.log('\n\n ==================================================\n\n');
 
     if (!gitlog) {
@@ -22,7 +22,7 @@ function gitlogToChangelog(gitlog) {
     var types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
     types.forEach(function (type) {
         var outputList = findByType(list, type).map(function (item) {
-            return logInfoToMarkdown(item);
+            return logInfoToMarkdown(item, withCheckbox);
         });
         if (outputList.length) {
             console.log('## ' + type);
@@ -33,7 +33,7 @@ function gitlogToChangelog(gitlog) {
     });
 
     var noTypeList = findNoType(list, types).map(function (item) {
-        return logInfoToMarkdown(item);
+        return logInfoToMarkdown(item, withCheckbox);
     });
     if (noTypeList.length) {
         console.log('## Others');
@@ -73,6 +73,10 @@ function findNoType(list, types) {
     });
 }
 
-function logInfoToMarkdown(logInfo) {
-    return '- [' + logInfo['prTitle'] + '](' + logInfo['prNum'] + ')';
+function logInfoToMarkdown(logInfo, withCheckbox) {
+    if (withCheckbox) {
+        return '- [ ] [' + logInfo['prTitle'] + '](' + logInfo['prNum'] + ')';
+    } else {
+        return '- [' + logInfo['prTitle'] + '](' + logInfo['prNum'] + ')';
+    }
 }

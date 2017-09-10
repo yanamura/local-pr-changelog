@@ -1,6 +1,6 @@
 {
   "name": "local-pr-changelog",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "generate changelog from PullRequest Merge commits",
   "main": "src/index.js",
   "scripts": {

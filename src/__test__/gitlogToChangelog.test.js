@@ -51,7 +51,15 @@ describe('findNoType', () => {
 });
 
 describe('logInfoToMarkdown', () => {
-    it('should return markdown', () => {
-        expect(logInfoToMarkdown({prNum: "#893", prTitle: "New: Add DraftEditorDefaultProps type"})).toBe('- [New: Add DraftEditorDefaultProps type](#893)')
+    describe('with checkbox', () => {
+        it('should return markdown', () => {
+            expect(logInfoToMarkdown({prNum: "#893", prTitle: "New: Add DraftEditorDefaultProps type"}, true)).toBe('- [ ] [New: Add DraftEditorDefaultProps type](#893)')
+        });
+    });
+
+    describe('without checkbox', () => {
+        it('should return markdown', () => {
+            expect(logInfoToMarkdown({prNum: "#893", prTitle: "New: Add DraftEditorDefaultProps type"}, false)).toBe('- [New: Add DraftEditorDefaultProps type](#893)')
+        });
     });
 });
