@@ -7,8 +7,15 @@ exports.gitlogToChangelog = gitlogToChangelog;
 exports.gitlogToList = gitlogToList;
 exports.gitsubjectToPRnumber = gitsubjectToPRnumber;
 exports.findByType = findByType;
+exports.findNoType = findNoType;
 exports.logInfoToMarkdown = logInfoToMarkdown;
 function gitlogToChangelog(gitlog) {
+    console.log('\n\n ==================================================\n\n');
+
+    if (!gitlog) {
+        return null;
+    }
+
     var list = gitlogToList(gitlog);
 
     var types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
@@ -19,6 +26,16 @@ function gitlogToChangelog(gitlog) {
         if (outputList.length) {
             console.log('## ' + type);
             outputList.forEach(function (item) {
+                console.log(item);
+            });
+        }
+
+        var noTypeList = findNoType(list, types).map(function (item) {
+            return logInfoToMarkdown(item);
+        });
+        if (noTypeList.length) {
+            console.log('## Others');
+            noTypeList.forEach(function (item) {
                 console.log(item);
             });
         }
@@ -41,6 +58,17 @@ function gitsubjectToPRnumber(subject) {
 function findByType(list, type) {
     return list.filter(function (item) {
         return item['prTitle'].startsWith(type);
+    });
+}
+
+function findNoType(list, types) {
+    return list.filter(function (item) {
+        for (var i = 0; i < types.length; i++) {
+            if (item['prTitle'].startsWith(types[i])) {
+                return false;
+            }
+        }
+        return true;
     });
 }
 

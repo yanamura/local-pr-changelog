@@ -1,4 +1,10 @@
 export function gitlogToChangelog(gitlog) {
+    console.log(`\n\n ==================================================\n\n`);
+
+    if (!gitlog) {
+        return null;
+    }
+
     const list = gitlogToList(gitlog);
 
     const types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
@@ -7,6 +13,14 @@ export function gitlogToChangelog(gitlog) {
         if (outputList.length) {
             console.log(`## ${type}`);
             outputList.forEach((item) => {
+                console.log(item);
+            });
+        }
+
+        const noTypeList = findNoType(list, types).map((item) => {return logInfoToMarkdown(item)});
+        if (noTypeList.length) {
+            console.log(`## Others`);
+            noTypeList.forEach((item) => {
                 console.log(item);
             });
         }
@@ -28,6 +42,17 @@ export function gitsubjectToPRnumber(subject) {
 export function findByType(list, type) {
     return list.filter((item) => {
         return item['prTitle'].startsWith(type);
+    });
+}
+
+export function findNoType(list, types) {
+    return list.filter((item) => {
+        for (let i = 0; i < types.length; i++) {
+            if (item['prTitle'].startsWith(types[i])) {
+                return false;
+            }
+        }
+        return true;
     });
 }
 
