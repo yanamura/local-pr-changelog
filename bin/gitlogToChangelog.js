@@ -29,17 +29,17 @@ function gitlogToChangelog(gitlog) {
                 console.log(item);
             });
         }
-
-        var noTypeList = findNoType(list, types).map(function (item) {
-            return logInfoToMarkdown(item);
-        });
-        if (noTypeList.length) {
-            console.log('## Others');
-            noTypeList.forEach(function (item) {
-                console.log(item);
-            });
-        }
     });
+
+    var noTypeList = findNoType(list, types).map(function (item) {
+        return logInfoToMarkdown(item);
+    });
+    if (noTypeList.length) {
+        console.log('## Others');
+        noTypeList.forEach(function (item) {
+            console.log(item);
+        });
+    }
 }
 
 function gitlogToList(gitlog) {

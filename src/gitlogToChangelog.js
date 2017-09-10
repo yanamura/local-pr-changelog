@@ -16,15 +16,15 @@ export function gitlogToChangelog(gitlog) {
                 console.log(item);
             });
         }
-
-        const noTypeList = findNoType(list, types).map((item) => {return logInfoToMarkdown(item)});
-        if (noTypeList.length) {
-            console.log(`## Others`);
-            noTypeList.forEach((item) => {
-                console.log(item);
-            });
-        }
     });
+
+    const noTypeList = findNoType(list, types).map((item) => {return logInfoToMarkdown(item)});
+    if (noTypeList.length) {
+        console.log(`## Others`);
+        noTypeList.forEach((item) => {
+            console.log(item);
+        });
+    }
 }
 
 export function gitlogToList(gitlog) {
