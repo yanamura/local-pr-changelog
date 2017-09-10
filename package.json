@@ -1,6 +1,6 @@
 {
   "name": "local-pr-changelog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "generate changelog from PullRequest Merge commits",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Yasuharu Yanamura",
   "license": "MIT",
   "bin": {
-    "pr_changelog": "bin/index.js"
+    "local-pr-changelog": "bin/index.js"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
