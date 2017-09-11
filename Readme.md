@@ -32,7 +32,7 @@ local-pr-changelog -f v1.0.0 -c
 
 ### Classify Output
 
-Pull Request Title must start with `New: ` or `Fix: ` or `Update: ` or `Build: `.
+Pull Request Title must start with `New: ` or `Fix: ` or `Update: ` or `Build: `, `Docs: `, `Breaking: `, `Upgrade: `.
 
 
 

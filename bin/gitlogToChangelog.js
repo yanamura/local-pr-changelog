@@ -19,13 +19,13 @@ function gitlogToChangelog(gitlog, withCheckbox) {
 
     var list = gitlogToList(gitlog);
 
-    var types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
+    var types = ['New: ', 'Fix: ', 'Update: ', 'Build: ', 'Docs: ', 'Upgrade: ', 'Breaking: '];
     types.forEach(function (type) {
         var outputList = findByType(list, type).map(function (item) {
             return logInfoToMarkdown(item, withCheckbox);
         });
         if (outputList.length) {
-            console.log('## ' + type);
+            console.log('## ' + type.slice(0, -2));
             outputList.forEach(function (item) {
                 console.log(item);
             });

@@ -4,7 +4,7 @@ const gitlog = "Merge pull request #893 from existentialism/issue890,,New: Add D
     "Merge pull request #905 from marcelometal/marcelometal-patch-1,,Update: Improve README.md\n" +
     "Merge pull request #1026 from Daniel15/draftjsorg-updates,,Update: Updates to move the site to draftjs.org\n" +
     "Merge pull request #1028 from flarnie/tweakToFixWebsiteBuild,,New: Add .gitkeep to /website/src/lib\n" +
-    "Merge pull request #1030 from Daniel15/oh-my-glob,,Doc: Only include files in glob, not directory.\n" +
+    "Merge pull request #1030 from Daniel15/oh-my-glob,,Docs: Only include files in glob, not directory.\n" +
     "Merge pull request #1032 from TestUser1/fix-test,,Test Commit.\n" +
     "Merge pull request #1031 from Daniel15/fix-web,,Fix: Fix race condition in website builder script";
 const logInfo = [
@@ -12,7 +12,7 @@ const logInfo = [
     {prNum: "#905", prTitle: "Update: Improve README.md"},
     {prNum: "#1026", prTitle: "Update: Updates to move the site to draftjs.org"},
     {prNum: "#1028", prTitle: "New: Add .gitkeep to /website/src/lib"},
-    {prNum: "#1030", prTitle: "Doc: Only include files in glob, not directory."},
+    {prNum: "#1030", prTitle: "Docs: Only include files in glob, not directory."},
     {prNum: "#1032", prTitle: "Test Commit."},
     {prNum: "#1031", prTitle: "Fix: Fix race condition in website builder script"}
 ];
@@ -44,7 +44,7 @@ describe('findByType', () => {
 
 describe('findNoType', () => {
     it('should return logInfo which not contains type', () => {
-        expect(findNoType(logInfo, ['New: ', 'Update: ', 'Fix: ', 'Doc: '])).toEqual([
+        expect(findNoType(logInfo, ['New: ', 'Update: ', 'Fix: ', 'Docs: '])).toEqual([
             {prNum: "#1032", prTitle: "Test Commit."},
         ]);
     });

@@ -8,11 +8,11 @@ export function gitlogToChangelog(gitlog, withCheckbox) {
 
     const list = gitlogToList(gitlog);
 
-    const types = ['New: ', 'Fix: ', 'Build: ', 'Doc: '];
+    const types = ['New: ', 'Fix: ', 'Update: ', 'Build: ', 'Docs: ', 'Upgrade: ', 'Breaking: '];
     types.forEach(type => {
         const outputList = findByType(list, type).map((item) => {return logInfoToMarkdown(item, withCheckbox)});
         if (outputList.length) {
-            console.log(`## ${type}`);
+            console.log(`## ${type.slice(0, -2)}`);
             outputList.forEach((item) => {
                 console.log(item);
             });
