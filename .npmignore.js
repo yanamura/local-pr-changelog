@@ -1,2 +1,1 @@
-bin/__test/
 src/
