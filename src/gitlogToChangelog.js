@@ -30,10 +30,17 @@ export function gitlogToChangelog(gitlog, withCheckbox) {
 
 export function gitlogToList(gitlog) {
     const logs = gitlog.split('\n');
-    return logs.map((log) => {
-        const logArray = log.split(',,');
-        return {prNum: gitsubjectToPRnumber(logArray[0]), prTitle: logArray[1]}
-    })
+    return logs
+        .map((log) => {
+            const logArray = log.split(',,');
+            if (!logArray[1]) {
+                return null;
+            }
+            return {prNum: gitsubjectToPRnumber(logArray[0]), prTitle: logArray[1]}
+        })
+        .filter((log) => {
+            return log !== null;
+        });
 }
 
 export function gitsubjectToPRnumber(subject) {

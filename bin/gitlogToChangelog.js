@@ -47,7 +47,12 @@ function gitlogToList(gitlog) {
     var logs = gitlog.split('\n');
     return logs.map(function (log) {
         var logArray = log.split(',,');
+        if (!logArray[1]) {
+            return null;
+        }
         return { prNum: gitsubjectToPRnumber(logArray[0]), prTitle: logArray[1] };
+    }).filter(function (log) {
+        return log !== null;
     });
 }
 

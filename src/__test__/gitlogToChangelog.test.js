@@ -6,7 +6,9 @@ const gitlog = "Merge pull request #893 from existentialism/issue890,,New: Add D
     "Merge pull request #1028 from flarnie/tweakToFixWebsiteBuild,,New: Add .gitkeep to /website/src/lib\n" +
     "Merge pull request #1030 from Daniel15/oh-my-glob,,Docs: Only include files in glob, not directory.\n" +
     "Merge pull request #1032 from TestUser1/fix-test,,Test Commit.\n" +
-    "Merge pull request #1031 from Daniel15/fix-web,,Fix: Fix race condition in website builder script";
+    "Merge pull request #1031 from Daniel15/fix-web,,Fix: Fix race condition in website builder script\n" +
+    "Merge branch 'foo' into develop";
+
 const logInfo = [
     {prNum: "#893", prTitle: "New: Add DraftEditorDefaultProps type"},
     {prNum: "#905", prTitle: "Update: Improve README.md"},
@@ -21,7 +23,7 @@ describe('gitsubjectToPRnumber', () => {
     it('should return PullRequest number', () => {
         const subject = "Merge pull request #893 from existentialism/issue890";
 
-        const prNumber = gitsubjectToPRnumber(subject)
+        const prNumber = gitsubjectToPRnumber(subject);
 
         expect(prNumber).toBe('#893');
     });
