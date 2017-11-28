@@ -50,6 +50,9 @@ function gitlogToList(gitlog) {
         if (!logArray[1]) {
             return null;
         }
+        if (!logArray[0].startsWith('Merge pull request')) {
+            return null;
+        }
         return { prNum: gitsubjectToPRnumber(logArray[0]), prTitle: logArray[1] };
     }).filter(function (log) {
         return log !== null;
