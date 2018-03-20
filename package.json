@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d bin",
     "test": "./node_modules/.bin/jest",
-    "prebuild": "npm run build"
+    "prepublish": "npm run build"
   },
   "author": "Yasuharu Yanamura",
   "license": "MIT",
